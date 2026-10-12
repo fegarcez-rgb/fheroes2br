@@ -1,78 +1,45 @@
 name: MSVC
 
-on: workflowcall: workflowdispatch:
+on:
+  workflow_call:
+  workflow_dispatch:
 
-permissions: contents: read
+permissions:
+  contents: read
 
-jobs: msvc: strategy: fail-fast: false matrix: include: - name: SDL2 x64 platform: x64 build_config: Release-SDL2 name: MSVC (${{ matrix.name }}) runs-on: windows-2022 timeout-minutes: 45 steps: - name: Checkout repository uses: actions/checkout@v4
+jobs:
+  msvc:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: SDL2 x64
+            platform: x64
+            build_config: Release-SDL2
 
-- name: Install dependencies shell: cmd run: script\windows\install_packages.bat
+    name: MSVC (${{ matrix.name }})
+    runs-on: windows-2022
+    timeout-minutes: 45
 
-- name: Install MSYS2 tools shell: cmd run: C:\msys64\usr\bin\pacman.exe -S --noconfirm --noprogressbar gettext-devel make
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-- name: Generate version information shell: bash run: echo "FHEROES2APPVERSION=
-(
-𝑐
-𝑎
-𝑡
-𝑣
-𝑒
-𝑟
-𝑠
-𝑖
-𝑜
-𝑛
-.
-𝑡
-𝑥
-𝑡
-)
-"
->
->
-"
-GITHUB_ENV"
+      - name: Install dependencies
+        shell: cmd
+        run: script\windows\install_packages.bat
 
-- name: Setup MSBuild uses: microsoft/setup-msbuild@v2
+      - name: Install MSYS2 tools
+        shell: cmd
+        run: C:\msys64\usr\bin\pacman.exe -S --noconfirm --noprogressbar gettext-devel make
 
-- name: Build fheroes2 shell: bash run: MSBuild.exe fheroes2-vs2019.vcxproj /property:Platform=
-𝑚
-𝑎
-𝑡
-𝑟
-𝑖
-𝑥
-.
-𝑝
-𝑙
-𝑎
-𝑡
-𝑓
-𝑜
-𝑟
-𝑚
-/
-𝑝
-𝑟
-𝑜
-𝑝
-𝑒
-𝑟
-𝑡
-𝑦
-:
-𝐶
-𝑜
-𝑛
-𝑓
-𝑖
-𝑔
-𝑢
-𝑟
-𝑎
-𝑡
-𝑖
-𝑜
-𝑛
-=
-{{ matrix.build_config }}
+      - name: Generate version information
+        shell: bash
+        run: echo "FHEROES2APPVERSION=$(cat version.txt)" >> "$GITHUB_ENV"
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build fheroes2
+        shell: bash
+        run: MSBuild.exe fheroes2-vs2019.vcxproj /property:Platform=${{ matrix.platform }} /property:Configuration=${{ matrix.build_config }}
