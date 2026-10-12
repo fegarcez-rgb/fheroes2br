@@ -242,8 +242,8 @@ namespace
             { 7, 9, 4, 6, 30, Speed::FAST, 0, 0, {}, {} }, // Master Swordsman
             { 10, 9, 5, 10, 30, Speed::VERYFAST, 0, 0, {}, {} }, // Cavalry
             { 10, 9, 5, 10, 40, Speed::ULTRAFAST, 0, 0, {}, {} }, // Champion
-            { 11, 12, 10, 20, 50, Speed::FAST, 0, 0, {}, {} }, // Paladin
-            { 11, 12, 10, 20, 65, Speed::VERYFAST, 0, 0, {}, {} }, // Crusader
+            { 11, 12, 10, 20, 200, Speed::FAST, 0, 0, {}, {} }, // Paladin
+            { 11, 12, 10, 20, 100, Speed::VERYFAST, 0, 0, {}, {} }, // Crusader
             { 3, 1, 1, 2, 3, Speed::AVERAGE, 0, 0, {}, {} }, // Goblin
             { 3, 4, 2, 3, 10, Speed::VERYSLOW, 8, 0, {}, {} }, // Orc
             { 3, 4, 3, 4, 15, Speed::SLOW, 16, 0, {}, {} }, // Orc Chief
@@ -252,7 +252,7 @@ namespace
             { 9, 5, 5, 7, 60, Speed::AVERAGE, 0, 0, {}, {} }, // Ogre Lord
             { 10, 5, 5, 7, 40, Speed::AVERAGE, 8, 0, {}, {} }, // Troll
             { 10, 5, 7, 9, 40, Speed::FAST, 16, 0, {}, {} }, // War Troll
-            { 12, 9, 12, 24, 80, Speed::FAST, 0, 0, {}, {} }, // Cyclops
+            { 12, 9, 12, 24, 300, Speed::FAST, 0, 0, {}, {} }, // Cyclops
             { 4, 2, 1, 2, 2, Speed::AVERAGE, 0, 0, {}, {} }, // Sprite
             { 6, 5, 2, 4, 20, Speed::VERYSLOW, 0, 0, {}, {} }, // Dwarf
             { 6, 6, 2, 4, 20, Speed::AVERAGE, 0, 0, {}, {} }, // Battle Dwarf
@@ -261,7 +261,7 @@ namespace
             { 7, 5, 5, 8, 25, Speed::FAST, 8, 0, {}, {} }, // Druid
             { 7, 7, 5, 8, 25, Speed::VERYFAST, 16, 0, {}, {} }, // Greater Druid
             { 10, 9, 7, 14, 40, Speed::FAST, 0, 0, {}, {} }, // Unicorn
-            { 12, 10, 20, 40, 100, Speed::ULTRAFAST, 0, 0, {}, {} }, // Phoenix
+            { 12, 10, 20, 40, 250, Speed::ULTRAFAST, 0, 0, {}, {} }, // Phoenix
             { 3, 1, 1, 2, 5, Speed::AVERAGE, 8, 0, {}, {} }, // Centaur
             { 4, 7, 2, 3, 15, Speed::VERYFAST, 0, 0, {}, {} }, // Gargoyle
             { 6, 6, 3, 5, 25, Speed::AVERAGE, 0, 0, {}, {} }, // Griffin
@@ -289,7 +289,7 @@ namespace
             { 8, 6, 5, 7, 40, Speed::FAST, 0, 0, {}, {} }, // Vampire Lord
             { 7, 12, 8, 10, 25, Speed::FAST, 12, 0, {}, {} }, // Lich
             { 7, 13, 8, 10, 35, Speed::VERYFAST, 24, 0, {}, {} }, // Power Lich
-            { 11, 9, 25, 45, 150, Speed::AVERAGE, 0, 0, {}, {} }, // Bone Dragon
+            { 11, 9, 25, 45, 250, Speed::AVERAGE, 0, 0, {}, {} }, // Bone Dragon
             { 6, 1, 1, 2, 4, Speed::FAST, 0, 0, {}, {} }, // Rogue
             { 7, 6, 2, 5, 20, Speed::VERYFAST, 0, 0, {}, {} }, // Nomad
             { 8, 7, 4, 6, 20, Speed::FAST, 0, 0, {}, {} }, // Ghost
