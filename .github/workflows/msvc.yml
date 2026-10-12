@@ -1,14 +1,18 @@
 name: MSVC
 
 on:
-  workflow_call:
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
 
 jobs:
   msvc:
+    name: MSVC (${{ matrix.name }})
+    runs-on: windows-2022
+    timeout-minutes: 45
+
     strategy:
       fail-fast: false
       matrix:
@@ -16,10 +20,6 @@ jobs:
           - name: SDL2 x64
             platform: x64
             build_config: Release-SDL2
-
-    name: MSVC (${{ matrix.name }})
-    runs-on: windows-2022
-    timeout-minutes: 45
 
     steps:
       - name: Checkout repository
@@ -42,4 +42,15 @@ jobs:
 
       - name: Build fheroes2
         shell: bash
-        run: MSBuild.exe fheroes2-vs2019.vcxproj /property:Platform=${{ matrix.platform }} /property:Configuration=${{ matrix.build_config }}
+        run: >
+          MSBuild.exe fheroes2-vs2019.vcxproj
+          /property:Platform=${{ matrix.platform }}
+          /property:Configuration=${{ matrix.build_config }}
+          /property:BuildProjectReferences=true
+
+      - name: Upload fheroes2.exe
+        uses: actions/upload-artifact@v4
+        with:
+          name: fheroes2-windows-x64-SDL2
+          path: "**/fheroes2.exe"
+          if-no-files-found: error
