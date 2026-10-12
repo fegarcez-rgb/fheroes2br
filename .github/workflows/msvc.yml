@@ -40,7 +40,7 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      -- name: Build fheroes2
+      - name: Build fheroes2
         shell: bash
         run: |
           MSBuild.exe fheroes2-vs2019.vcxproj \
@@ -48,9 +48,48 @@ jobs:
             /property:Configuration=${{ matrix.build_config }} \
             /property:BuildProjectReferences=true
 
-      - name: Upload fheroes2.exe
+      - name: Package game
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+
+          $exe = Get-ChildItem -Path . -Filter fheroes2.exe -Recurse -File |
+            Where-Object { $_.FullName -notmatch '[\\/](package|\.git)[\\/]' } |
+            Select-Object -First 1
+
+          if (-not $exe) {
+            throw "fheroes2.exe não foi encontrado após a compilação."
+          }
+
+          New-Item -ItemType Directory -Force -Path package | Out-Null
+          Copy-Item $exe.FullName package/fheroes2.exe -Force
+
+          $sourceRoot = (Get-Location).Path
+          $data = Join-Path $sourceRoot "DATA"
+          $maps = Join-Path $sourceRoot "MAPS"
+
+          if (Test-Path $data) {
+            Copy-Item $data package/ -Recurse -Force
+          }
+
+          if (Test-Path $maps) {
+            Copy-Item $maps package/ -Recurse -Force
+          }
+
+          foreach ($dir in @("ANIM", "MUSIC", "files")) {
+            $source = Join-Path $sourceRoot $dir
+            if (Test-Path $source) {
+              Copy-Item $source package/ -Recurse -Force
+            }
+          }
+
+          Write-Host "Executável copiado de: $($exe.FullName)"
+          Write-Host "Conteúdo do pacote:"
+          Get-ChildItem package -Recurse
+
+      - name: Upload game ZIP
         uses: actions/upload-artifact@v4
         with:
           name: fheroes2-windows-x64-SDL2
-          path: "**/fheroes2.exe"
+          path: package/
           if-no-files-found: error
