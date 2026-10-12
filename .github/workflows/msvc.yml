@@ -40,13 +40,13 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Build fheroes2
+      -- name: Build fheroes2
         shell: bash
-        run: >
-          MSBuild.exe fheroes2-vs2019.vcxproj
-          /property:Platform=${{ matrix.platform }}
-          /property:Configuration=${{ matrix.build_config }}
-          /property:BuildProjectReferences=true
+        run: |
+          MSBuild.exe fheroes2-vs2019.vcxproj \
+            /property:Platform=${{ matrix.platform }} \
+            /property:Configuration=${{ matrix.build_config }} \
+            /property:BuildProjectReferences=true
 
       - name: Upload fheroes2.exe
         uses: actions/upload-artifact@v4
