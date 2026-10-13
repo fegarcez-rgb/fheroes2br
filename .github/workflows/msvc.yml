@@ -1,6 +1,6 @@
 name: MSVC
 
-on:
+'on':
   workflow_dispatch:
   workflow_call:
 
@@ -9,17 +9,9 @@ permissions:
 
 jobs:
   msvc:
-    name: MSVC (${{ matrix.name }})
+    name: MSVC Windows x64
     runs-on: windows-2022
     timeout-minutes: 45
-
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - name: SDL2 x64
-            platform: x64
-            build_config: Release-SDL2
 
     steps:
       - name: Checkout repository
@@ -43,53 +35,11 @@ jobs:
       - name: Build fheroes2
         shell: bash
         run: |
-          MSBuild.exe fheroes2-vs2019.vcxproj \
-            /property:Platform=${{ matrix.platform }} \
-            /property:Configuration=${{ matrix.build_config }} \
-            /property:BuildProjectReferences=true
+          MSBuild.exe fheroes2-vs2019.vcxproj /property:Platform=x64 /property:Configuration=Release-SDL2 /property:BuildProjectReferences=true
 
-      - name: Package game
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = "Stop"
-
-          $exe = Get-ChildItem -Path . -Filter fheroes2.exe -Recurse -File |
-            Where-Object { $_.FullName -notmatch '[\\/](package|\.git)[\\/]' } |
-            Select-Object -First 1
-
-          if (-not $exe) {
-            throw "fheroes2.exe não foi encontrado após a compilação."
-          }
-
-          New-Item -ItemType Directory -Force -Path package | Out-Null
-          Copy-Item $exe.FullName package/fheroes2.exe -Force
-
-          $sourceRoot = (Get-Location).Path
-          $data = Join-Path $sourceRoot "DATA"
-          $maps = Join-Path $sourceRoot "MAPS"
-
-          if (Test-Path $data) {
-            Copy-Item $data package/ -Recurse -Force
-          }
-
-          if (Test-Path $maps) {
-            Copy-Item $maps package/ -Recurse -Force
-          }
-
-          foreach ($dir in @("ANIM", "MUSIC", "files")) {
-            $source = Join-Path $sourceRoot $dir
-            if (Test-Path $source) {
-              Copy-Item $source package/ -Recurse -Force
-            }
-          }
-
-          Write-Host "Executável copiado de: $($exe.FullName)"
-          Write-Host "Conteúdo do pacote:"
-          Get-ChildItem package -Recurse
-
-      - name: Upload game ZIP
+      - name: Upload executable
         uses: actions/upload-artifact@v4
         with:
           name: fheroes2-windows-x64-SDL2
-          path: package/
+          path: '**/fheroes2.exe'
           if-no-files-found: error
