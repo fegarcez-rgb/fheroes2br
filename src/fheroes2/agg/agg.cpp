@@ -9,16 +9,6 @@
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
  *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
 #include <list>
@@ -40,11 +30,10 @@ namespace
 std::vector<uint8_t> AGG::getDataFromAggFile( const std::string & key, const bool ignoreExpansion )
 {
     if ( !ignoreExpansion && heroes2x_agg.isGood() ) {
-        // Make sure that the below container is not const and not a reference
-        // so returning it from the function will invoke a move constructor instead of copy constructor.
         std::vector<uint8_t> buf = heroes2x_agg.read( key );
-        if ( !buf.empty() )
+        if ( !buf.empty() ) {
             return buf;
+        }
     }
 
     return heroes2_agg.read( key );
@@ -64,26 +53,25 @@ bool AGG::AGGInitializer::init()
     const ListFiles aggFileNames = Settings::FindFiles( "data", ".agg", false );
 
     if ( aggFileNames.empty() ) {
-        ERROR_LOG( "No AGG files found. Current working directory: " << System::GetCurrentDirectory() );
-
-        for ( const std::string & dir : Settings::GetRootDirs() ) {
-            ERROR_LOG( "Data search root: " << dir );
-        }
-
         return false;
     }
 
-        std::string tempPath = StringLower( path );
+    const std::string heroes2AggFileName = "heroes2.agg";
+    std::string heroes2AggFilePath;
+    std::string aggLowerCaseFilePath;
 
-        if ( tempPath.compare( tempPath.size() - heroes2AggFileName.size(), heroes2AggFileName.size(), heroes2AggFileName ) == 0 ) {
+    for ( const std::string & path : aggFileNames ) {
+        const std::string tempPath = StringLower( path );
+
+        if ( tempPath.size() >= heroes2AggFileName.size()
+             && tempPath.compare( tempPath.size() - heroes2AggFileName.size(), heroes2AggFileName.size(), heroes2AggFileName ) == 0 ) {
             heroes2AggFilePath = path;
-            aggLowerCaseFilePath = std::move( tempPath );
+            aggLowerCaseFilePath = tempPath;
             break;
         }
     }
 
     if ( heroes2AggFilePath.empty() ) {
-        // The main game resource file was not found.
         return false;
     }
 
@@ -93,12 +81,12 @@ bool AGG::AGGInitializer::init()
 
     _originalAGGFilePath = std::move( heroes2AggFilePath );
 
-    // Find "heroes2x.agg" file.
     std::string heroes2XAggFilePath;
     fheroes2::replaceStringEnding( aggLowerCaseFilePath, ".agg", "x.agg" );
 
     for ( const std::string & path : aggFileNames ) {
         const std::string tempPath = StringLower( path );
+
         if ( tempPath == aggLowerCaseFilePath ) {
             heroes2XAggFilePath = path;
             break;
