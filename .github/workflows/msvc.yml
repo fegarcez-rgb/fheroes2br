@@ -1,15 +1,14 @@
-name: MSVC
+name: MSVC Windows
 
 'on':
   workflow_dispatch:
-  workflow_call:
 
 permissions:
   contents: read
 
 jobs:
-  msvc:
-    name: MSVC Windows x64
+  windows:
+    name: Windows x64
     runs-on: windows-2022
     timeout-minutes: 45
 
@@ -34,12 +33,29 @@ jobs:
 
       - name: Build fheroes2
         shell: bash
-        run: |
-          MSBuild.exe fheroes2-vs2019.vcxproj /property:Platform=x64 /property:Configuration=Release-SDL2 /property:BuildProjectReferences=true
+        run: MSBuild.exe fheroes2-vs2019.vcxproj /property:Platform=x64 /property:Configuration=Release-SDL2 /property:BuildProjectReferences=true
 
-      - name: Upload executable
+      - name: Prepare Windows package
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path . -Filter fheroes2.exe -Recurse |
+            Where-Object { $_.FullName -notmatch '[\\/]\.git[\\/]' } |
+            Select-Object -First 1
+
+          if (-not $exe) {
+            throw "fheroes2.exe não foi encontrado após a compilação."
+          }
+
+          New-Item -ItemType Directory -Path package -Force | Out-Null
+          Copy-Item $exe.FullName package\fheroes2.exe
+
+          if (Test-Path files) {
+            Copy-Item files package\files -Recurse
+          }
+
+      - name: Upload Windows package
         uses: actions/upload-artifact@v4
         with:
-          name: fheroes2-windows-x64-SDL2
-          path: '**/fheroes2.exe'
+          name: fheroes2-windows-x64
+          path: package/
           if-no-files-found: error
