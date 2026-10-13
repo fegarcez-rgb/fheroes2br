@@ -233,63 +233,63 @@ namespace
         const fheroes2::MonsterBattleStats monsterBattleStats[Monster::MONSTER_COUNT] = {
             // attack | defence | damageMin | damageMax | hp | speed | shots | baseStrength | abilities | weaknesses
             { 0, 0, 0, 0, 0, Speed::VERYSLOW, 0, 0, {}, {} }, // Unknown Monster
-            { 1, 1, 1, 1, 1, Speed::VERYSLOW, 0, 0, {}, {} }, // Peasant
-            { 5, 3, 2, 3, 10, Speed::VERYSLOW, 12, 0, {}, {} }, // Archer
-            { 5, 3, 2, 3, 10, Speed::AVERAGE, 24, 0, {}, {} }, // Ranger
-            { 5, 9, 3, 4, 15, Speed::AVERAGE, 0, 0, {}, {} }, // Pikeman
-            { 5, 9, 3, 4, 20, Speed::FAST, 0, 0, {}, {} }, // Veteran Pikeman
-            { 7, 9, 4, 6, 25, Speed::AVERAGE, 0, 0, {}, {} }, // Swordsman
-            { 7, 9, 4, 6, 30, Speed::FAST, 0, 0, {}, {} }, // Master Swordsman
-            { 10, 9, 5, 10, 30, Speed::VERYFAST, 0, 0, {}, {} }, // Cavalry
-            { 10, 9, 5, 10, 40, Speed::ULTRAFAST, 0, 0, {}, {} }, // Champion
-            { 11, 12, 10, 20, 200, Speed::FAST, 0, 0, {}, {} }, // Paladin
-            { 11, 12, 10, 20, 100, Speed::VERYFAST, 0, 0, {}, {} }, // Crusader
-            { 3, 1, 1, 2, 3, Speed::AVERAGE, 0, 0, {}, {} }, // Goblin
-            { 3, 4, 2, 3, 10, Speed::VERYSLOW, 8, 0, {}, {} }, // Orc
-            { 3, 4, 3, 4, 15, Speed::SLOW, 16, 0, {}, {} }, // Orc Chief
-            { 6, 2, 3, 5, 20, Speed::VERYFAST, 0, 0, {}, {} }, // Wolf
-            { 9, 5, 4, 6, 40, Speed::VERYSLOW, 0, 0, {}, {} }, // Ogre
-            { 9, 5, 5, 7, 60, Speed::AVERAGE, 0, 0, {}, {} }, // Ogre Lord
-            { 10, 5, 5, 7, 40, Speed::AVERAGE, 8, 0, {}, {} }, // Troll
-            { 10, 5, 7, 9, 40, Speed::FAST, 16, 0, {}, {} }, // War Troll
-            { 12, 9, 12, 24, 300, Speed::FAST, 0, 0, {}, {} }, // Cyclops
-            { 4, 2, 1, 2, 2, Speed::AVERAGE, 0, 0, {}, {} }, // Sprite
-            { 6, 5, 2, 4, 20, Speed::VERYSLOW, 0, 0, {}, {} }, // Dwarf
-            { 6, 6, 2, 4, 20, Speed::AVERAGE, 0, 0, {}, {} }, // Battle Dwarf
-            { 4, 3, 2, 3, 15, Speed::AVERAGE, 24, 0, {}, {} }, // Elf
-            { 5, 5, 2, 3, 15, Speed::VERYFAST, 24, 0, {}, {} }, // Grand Elf
-            { 7, 5, 5, 8, 25, Speed::FAST, 8, 0, {}, {} }, // Druid
-            { 7, 7, 5, 8, 25, Speed::VERYFAST, 16, 0, {}, {} }, // Greater Druid
-            { 10, 9, 7, 14, 40, Speed::FAST, 0, 0, {}, {} }, // Unicorn
-            { 12, 10, 20, 40, 250, Speed::ULTRAFAST, 0, 0, {}, {} }, // Phoenix
+                        { 3, 1, 1, 2, 5, Speed::AVERAGE, 0, 0, {}, {} }, // Peasant
+            { 5, 5, 2, 3, 15, Speed::FAST, 12, 0, {}, {} }, // Archer
+            { 5, 6, 2, 4, 20, Speed::VERYFAST, 24, 0, {}, {} }, // Ranger
+            { 6, 8, 3, 5, 28, Speed::AVERAGE, 0, 0, {}, {} }, // Pikeman
+            { 6, 9, 4, 5, 35, Speed::FAST, 0, 0, {}, {} }, // Veteran Pikeman
+            { 9, 8, 5, 10, 40, Speed::AVERAGE, 0, 0, {}, {} }, // Swordsman
+            { 9, 9, 5, 10, 50, Speed::FAST, 0, 0, {}, {} }, // Master Swordsman
+            { 10, 8, 6, 11, 70, Speed::AVERAGE, 0, 0, {}, {} }, // Cavalry
+            { 11, 9, 7, 12, 90, Speed::FAST, 0, 0, {}, {} }, // Champion
+            { 12, 12, 15, 35, 200, Speed::FAST, 0, 0, {}, {} }, // Paladin
+            { 14, 14, 20, 40, 300, Speed::VERYFAST, 0, 0, {}, {} }, // Crusader
+            { 3, 1, 1, 2, 5, Speed::AVERAGE, 0, 0, {}, {} }, // Goblin
+            { 5, 5, 2, 3, 15, Speed::FAST, 8, 0, {}, {} }, // Orc
+            { 5, 6, 2, 4, 20, Speed::FAST, 16, 0, {}, {} }, // Orc Chief
+            { 6, 8, 3, 5, 35, Speed::FAST, 0, 0, {}, {} }, // Wolf
+            { 9, 8, 5, 10, 40, Speed::AVERAGE, 0, 0, {}, {} }, // Ogre
+            { 9, 9, 5, 10, 50, Speed::FAST, 0, 0, {}, {} }, // Ogre Lord
+            { 10, 8, 6, 11, 55, Speed::AVERAGE, 8, 0, {}, {} }, // Troll
+            { 11, 9, 7, 12, 65, Speed::FAST, 16, 0, {}, {} }, // War Troll
+            { 14, 14, 25, 45, 300, Speed::VERYFAST, 0, 0, {}, {} }, // Cyclops
+            { 3, 1, 1, 2, 5, Speed::AVERAGE, 0, 0, {}, {} }, // Sprite
+            { 5, 5, 2, 3, 15, Speed::FAST, 0, 0, {}, {} }, // Dwarf
+            { 5, 6, 2, 4, 20, Speed::VERYFAST, 0, 0, {}, {} }, // Battle Dwarf
+            { 6, 8, 3, 5, 28, Speed::AVERAGE, 24, 0, {}, {} }, // Elf
+            { 6, 9, 4, 5, 35, Speed::FAST, 24, 0, {}, {} }, // Grand Elf
+            { 9, 8, 5, 10, 40, Speed::AVERAGE, 8, 0, {}, {} }, // Druid
+            { 9, 9, 5, 10, 50, Speed::FAST, 16, 0, {}, {} }, // Greater Druid
+            { 9, 9, 6, 12, 80, Speed::FAST, 0, 0, {}, {} }, // Unicorn
+            { 14, 14, 25, 45, 300, Speed::ULTRAFAST, 0, 0, {}, {} }, // Phoenix
             { 3, 1, 1, 2, 5, Speed::AVERAGE, 8, 0, {}, {} }, // Centaur
             { 4, 7, 2, 3, 15, Speed::VERYFAST, 0, 0, {}, {} }, // Gargoyle
-            { 6, 6, 3, 5, 25, Speed::AVERAGE, 0, 0, {}, {} }, // Griffin
-            { 9, 8, 5, 10, 35, Speed::AVERAGE, 0, 0, {}, {} }, // Minotaur
-            { 9, 8, 5, 10, 45, Speed::VERYFAST, 0, 0, {}, {} }, // Minotaur King
-            { 8, 9, 6, 12, 75, Speed::VERYSLOW, 0, 0, {}, {} }, // Hydra
-            { 12, 12, 25, 50, 200, Speed::AVERAGE, 0, 0, {}, {} }, // Green Dragon
-            { 13, 13, 25, 50, 250, Speed::FAST, 0, 0, {}, {} }, // Red Dragon
-            { 14, 14, 25, 50, 300, Speed::VERYFAST, 0, 0, {}, {} }, // Black Dragon
-            { 2, 1, 1, 3, 3, Speed::SLOW, 12, 0, {}, {} }, // Halfling
+            { 6, 6, 3, 5, 30, Speed::AVERAGE, 0, 0, {}, {} }, // Griffin
+            { 9, 8, 5, 10, 45, Speed::AVERAGE, 0, 0, {}, {} }, // Minotaur
+            { 9, 9, 5, 10, 55, Speed::FAST, 0, 0, {}, {} }, // Minotaur King
+            { 8, 9, 6, 12, 85, Speed::VERYSLOW, 0, 0, {}, {} }, // Hydra
+            { 12, 12, 25, 40, 200, Speed::FAST, 0, 0, {}, {} }, // Green Dragon
+            { 13, 13, 25, 42, 250, Speed::FAST, 0, 0, {}, {} }, // Red Dragon
+            { 14, 14, 25, 45, 300, Speed::VERYFAST, 0, 0, {}, {} }, // Black Dragon
+            { 2, 1, 1, 3, 3, Speed::AVERAGE, 12, 0, {}, {} }, // Halfling
             { 5, 4, 2, 3, 15, Speed::VERYFAST, 0, 0, {}, {} }, // Boar
-            { 5, 10, 4, 5, 30, Speed::VERYSLOW, 0, 0, {}, {} }, // Iron Golem
-            { 7, 10, 4, 5, 35, Speed::SLOW, 0, 0, {}, {} }, // Steel Golem
+            { 5, 10, 4, 5, 30, Speed::SLOW, 0, 0, {}, {} }, // Iron Golem
+            { 5, 10, 4, 5, 35, Speed::AVERAGE, 0, 0, {}, {} }, // Steel Golem
             { 7, 7, 4, 8, 40, Speed::AVERAGE, 0, 0, {}, {} }, // Roc
-            { 11, 7, 7, 9, 30, Speed::FAST, 12, 0, {}, {} }, // Mage
-            { 12, 8, 7, 9, 35, Speed::VERYFAST, 24, 0, {}, {} }, // Archmage
-            { 13, 10, 20, 30, 150, Speed::AVERAGE, 0, 0, {}, {} }, // Giant
-            { 15, 15, 20, 30, 300, Speed::VERYFAST, 24, 0, {}, {} }, // Titan
-            { 4, 3, 2, 3, 4, Speed::AVERAGE, 0, 0, {}, {} }, // Skeleton
-            { 5, 2, 2, 3, 15, Speed::VERYSLOW, 0, 0, {}, {} }, // Zombie
-            { 5, 2, 2, 3, 20, Speed::AVERAGE, 0, 0, {}, {} }, // Mutant Zombie
-            { 6, 6, 3, 4, 25, Speed::AVERAGE, 0, 0, {}, {} }, // Mummy
-            { 6, 6, 3, 4, 30, Speed::FAST, 0, 0, {}, {} }, // Royal Mummy
-            { 8, 6, 5, 7, 30, Speed::AVERAGE, 0, 0, {}, {} }, // Vampire
-            { 8, 6, 5, 7, 40, Speed::FAST, 0, 0, {}, {} }, // Vampire Lord
-            { 7, 12, 8, 10, 25, Speed::FAST, 12, 0, {}, {} }, // Lich
-            { 7, 13, 8, 10, 35, Speed::VERYFAST, 24, 0, {}, {} }, // Power Lich
-            { 11, 9, 25, 45, 250, Speed::AVERAGE, 0, 0, {}, {} }, // Bone Dragon
+            { 11, 7, 7, 9, 45, Speed::AVERAGE, 12, 0, {}, {} }, // Mage
+            { 12, 8, 7, 9, 55, Speed::FAST, 24, 0, {}, {} }, // Archmage
+            { 12, 12, 15, 35, 200, Speed::FAST, 0, 0, {}, {} }, // Giant
+            { 14, 14, 20, 40, 300, Speed::VERYFAST, 24, 0, {}, {} }, // Titan
+            { 3, 1, 1, 2, 5, Speed::FAST, 0, 0, {}, {} }, // Skeleton
+            { 5, 5, 2, 3, 15, Speed::AVERAGE, 0, 0, {}, {} }, // Zombie
+            { 5, 6, 2, 4, 20, Speed::FAST, 0, 0, {}, {} }, // Mutant Zombie
+            { 6, 8, 3, 5, 28, Speed::AVERAGE, 0, 0, {}, {} }, // Mummy
+            { 6, 9, 4, 5, 35, Speed::FAST, 0, 0, {}, {} }, // Royal Mummy
+            { 9, 8, 5, 10, 35, Speed::AVERAGE, 0, 0, {}, {} }, // Vampire
+            { 9, 9, 5, 10, 45, Speed::FAST, 0, 0, {}, {} }, // Vampire Lord
+            { 10, 8, 6, 11, 55, Speed::AVERAGE, 12, 0, {}, {} }, // Lich
+            { 11, 9, 7, 12, 65, Speed::FAST, 24, 0, {}, {} }, // Power Lich
+            { 14, 14, 25, 45, 300, Speed::VERYFAST, 0, 0, {}, {} }, // Bone Dragon
             { 6, 1, 1, 2, 4, Speed::FAST, 0, 0, {}, {} }, // Rogue
             { 7, 6, 2, 5, 20, Speed::VERYFAST, 0, 0, {}, {} }, // Nomad
             { 8, 7, 4, 6, 20, Speed::FAST, 0, 0, {}, {} }, // Ghost
