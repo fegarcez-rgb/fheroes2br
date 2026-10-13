@@ -62,19 +62,16 @@ AGG::AGGInitializer::AGGInitializer()
 bool AGG::AGGInitializer::init()
 {
     const ListFiles aggFileNames = Settings::FindFiles( "data", ".agg", false );
+
     if ( aggFileNames.empty() ) {
+        ERROR_LOG( "No AGG files found. Current working directory: " << System::GetCurrentDirectory() );
+
+        for ( const std::string & dir : Settings::GetRootDirs() ) {
+            ERROR_LOG( "Data search root: " << dir );
+        }
+
         return false;
     }
-
-    const std::string heroes2AggFileName( "heroes2.agg" );
-    std::string heroes2AggFilePath;
-    std::string aggLowerCaseFilePath;
-
-    for ( const std::string & path : aggFileNames ) {
-        if ( path.size() < heroes2AggFileName.size() ) {
-            // Obviously this is not a correct file.
-            continue;
-        }
 
         std::string tempPath = StringLower( path );
 
