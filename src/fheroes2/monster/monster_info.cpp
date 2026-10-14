@@ -233,7 +233,7 @@ namespace
         const fheroes2::MonsterBattleStats monsterBattleStats[Monster::MONSTER_COUNT] = {
             // attack | defence | damageMin | damageMax | hp | speed | shots | baseStrength | abilities | weaknesses
             { 0, 0, 0, 0, 0, Speed::VERYSLOW, 0, 0, {}, {} }, // Unknown Monster
-                        { 3, 1, 1, 2, 5, Speed::AVERAGE, 0, 0, {}, {} }, // Peasant
+            { 3, 1, 1, 2, 5, Speed::AVERAGE, 0, 0, {}, {} }, // Peasant
             { 5, 5, 2, 3, 15, Speed::FAST, 12, 0, {}, {} }, // Archer
             { 5, 6, 2, 4, 20, Speed::VERYFAST, 24, 0, {}, {} }, // Ranger
             { 6, 8, 3, 5, 28, Speed::AVERAGE, 0, 0, {}, {} }, // Pikeman
